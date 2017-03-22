@@ -23,9 +23,16 @@ The goals / steps of this project are the following:
 
 ###1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+My pipeline consisted of 5 steps. 
+1. Select parts of image corresponding to white and yellow lane lines. I used RGB ranges [150, 150, 150] to [255, 255, 255] for white and [150, 150, 0] to [255, 255, 150] for yellow.
+2. Convert to grayscale
+3. Canny edge detection with a Gaussian blur prefilter of size 5.
+4. Mask out the trapezoidal ROI
+5. Hough transform to detect lines.
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by
+Selecting lines by slope. Lines with a slope > 0.5 and < 1.0 are right lane markers. Lines with slope < -0.5 and > -1.0 are left lane markers
+Then I do a weighted average of the left slopes and x-intercepts and right slope and x-intercepts, weighting by the length of each segment. The idea is that due to parallax, the closer lines will have greater length and provide more accurate slope/intercept measurements.
 
 If you'd like to include images to show how the pipeline works, here is how to include an image: 
 
@@ -34,14 +41,24 @@ If you'd like to include images to show how the pipeline works, here is how to i
 
 ###2. Identify potential shortcomings with your current pipeline
 
+Vehicles with features that fall within the color mask - such as the C-pillars of a white or yellow car - within the ROI may be detected as extraneous lines, corrupting the lane detection.
 
-One potential shortcoming would be what would happen when ... 
+The pipeline only detects a straight line lane. A wavy lane, or a curved lane will pose problems.
 
-Another shortcoming could be ...
+The pipeline selects lanes within a certain slope range. Changing lanes, or turning into a lane will confuse the lane detection.
 
+The challenge file shows deficiencies in the color selection. An absolute color index may not be the best way to detect lane lines. Lane markings may vary in shades of white. Pavement can also vary in shades of white, for example concrete sections. There are sections of 280 where pavement is part white concrete and part black asphalt, and the transistion crosses lane lines.
 
 ###3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
+Smooth lane detection across frames.
 
-Another potential improvement could be to ...
+Weight towards lane lines closer to the bottom of the image, which show up with greater resolution that lane lines towards the horizon.
+
+Detect expected line patterns, such as dashed lines going towards the horizon, or continuous lines.
+
+Detect expected curves in addition to straight lines, possibly by fitting to splines of a certain order.
+
+Variable horizon detector for setting ROI boundary - the horizon may vary depending on the slope of the road. The ROI should adapt to the changing field of view.
+
+Adaptive color selection. Calibrate the lane line colors based on what's in the image and corresponding contrast with lane line context.
