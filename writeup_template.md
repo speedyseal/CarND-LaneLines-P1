@@ -15,10 +15,12 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/grayscale.jpg "Grayscale"
 [gray_solidYellowCurve]: ./test_images_output/gray_solidYellowCurve.jpg "After color select and grayscaling"
+
 [edge_solidYellowCurve]: ./test_images_output/edge_solidYellowCurve.jpg "After edge detection"
+
 [lines_solidYellowCurve]: ./test_images_output/lines_solidYellowCurve.jpg "Annotated with ROI, hough lines, and extrapolated lanes"
+
 ---
 
 ### Reflection
@@ -36,8 +38,13 @@ In order to draw a single line on the left and right lanes, I modified the draw_
 Selecting lines by slope. Lines with a slope > 0.5 and < 1.0 are right lane markers. Lines with slope < -0.5 and > -1.0 are left lane markers
 Then I do a weighted average of the left slopes and x-intercepts and right slope and x-intercepts, weighting by the length of each segment. The idea is that due to parallax, the closer lines will have greater length and provide more accurate slope/intercept measurements.
 
+This is the image after color selecting and converting to grayscale:
 ![alt text][gray_solidYellowCurve]
+
+This is the image after Canny edge detection:
 ![alt text][edge_solidYellowCurve]
+
+This is the image annotated with ROI in blue, Hough lines shown in red and lane lines in green:
 ![alt text][lines_solidYellowCurve]
 
 
