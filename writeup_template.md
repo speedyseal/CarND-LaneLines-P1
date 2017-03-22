@@ -16,7 +16,9 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./examples/grayscale.jpg "Grayscale"
-
+[gray_solidYellowCurve]: ./test_images_output/gray_solidYellowCurve.jpg "After color select and grayscaling"
+[edge_solidYellowCurve]: /test_images_output/edge_solidYellowCurve.jpg "After edge detection"
+[lines_solidYellowCurve]: /test_images_output/lines_solidYellowCurve.jpg "Annotated with ROI, hough lines, and extrapolated lanes"
 ---
 
 ### Reflection
@@ -34,9 +36,9 @@ In order to draw a single line on the left and right lanes, I modified the draw_
 Selecting lines by slope. Lines with a slope > 0.5 and < 1.0 are right lane markers. Lines with slope < -0.5 and > -1.0 are left lane markers
 Then I do a weighted average of the left slopes and x-intercepts and right slope and x-intercepts, weighting by the length of each segment. The idea is that due to parallax, the closer lines will have greater length and provide more accurate slope/intercept measurements.
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
-![alt text][image1]
+![alt text][gray_solidYellowCurve]
+![alt text][edge_solidYellowCurve]
+![alt text][lines_solidYellowCurve]
 
 
 ###2. Identify potential shortcomings with your current pipeline
