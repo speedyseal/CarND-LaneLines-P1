@@ -17,8 +17,8 @@ The goals / steps of this project are the following:
 
 [image1]: ./examples/grayscale.jpg "Grayscale"
 [gray_solidYellowCurve]: ./test_images_output/gray_solidYellowCurve.jpg "After color select and grayscaling"
-[edge_solidYellowCurve]: /test_images_output/edge_solidYellowCurve.jpg "After edge detection"
-[lines_solidYellowCurve]: /test_images_output/lines_solidYellowCurve.jpg "Annotated with ROI, hough lines, and extrapolated lanes"
+[edge_solidYellowCurve]: ./test_images_output/edge_solidYellowCurve.jpg "After edge detection"
+[lines_solidYellowCurve]: ./test_images_output/lines_solidYellowCurve.jpg "Annotated with ROI, hough lines, and extrapolated lanes"
 ---
 
 ### Reflection
